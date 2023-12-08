@@ -1,4 +1,9 @@
-import {readFileSync} from 'node:fs'
 import {iOSdarwinList} from './Darwin-iOS-list.js'
 
-console.log(iOSdarwinList)
+export function iOSInfoFrom(uastring) {
+	for (const {version, regex} of iOSdarwinList) {
+		if (uastring.match(new RegExp(regex)) != null) {
+			return { version }
+		}
+	}
+}
